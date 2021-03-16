@@ -1,9 +1,13 @@
 name: FunFall
 description: IDK, man.
 
-authors: [SavageAvocado, Tylo]
+authors: [ SavageAvocado, Tylo ]
 website: savagedev.net
 
 main: net.savagedev.funfall.FunFall
 api-version: "1.13"
 version: ${version}
+
+commands:
+  funfall:
+    description: Base command for FunFall.
