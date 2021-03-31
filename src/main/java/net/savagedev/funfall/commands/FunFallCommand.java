@@ -23,8 +23,13 @@ public class FunFallCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (!this.hasPermission(sender)) {
+            MessageUtils.message(sender, "&cYou do not have permission to execute this command.");
+            return true;
+        }
+
         if (args.length == 0) {
-            MessageUtils.message(sender, "&cInvalid arguments! Try: /funfall help");
+            MessageUtils.message(sender, "&cInvalid arguments! Try: /funfall " + this.getSuggestion(sender, "", "help"));
             return true;
         }
 
@@ -44,6 +49,15 @@ public class FunFallCommand implements CommandExecutor {
 
         command.execute(sender, label, args);
         return true;
+    }
+
+    private boolean hasPermission(CommandSender sender) {
+        for (SubCommand command : this.subCommandMap.values()) {
+            if (sender.hasPermission(command.getPermission())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private String getSuggestion(CommandSender sender, String input, String fallback) {

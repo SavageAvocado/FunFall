@@ -11,3 +11,4 @@ version: ${version}
 commands:
   funfall:
     description: Base command for FunFall.
+    aliases: [ff]
